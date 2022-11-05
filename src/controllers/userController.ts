@@ -2,8 +2,6 @@ import { Request, Response } from 'express';
 import { IToken } from '../interfaces';
 import UserService from '../services/userService';
 
-
-
 export default class UserController {
   service = new UserService();
 

@@ -2,10 +2,11 @@ import Joi from 'joi';
 import { IToken, IUser } from '../interfaces';
 import validateBody from '../middlewares/validateBody';
 import UserModel from '../models/userModel';
-import authMiddleware from '../middlewares/authMiddleware';
+import AuthMiddleware from '../middlewares/authMiddleware';
 
 export default class UserService {
-  auth = new authMiddleware();
+  auth = new AuthMiddleware();
+
   model = new UserModel();
 
   async insert(body:IUser): Promise<IToken> {
@@ -19,7 +20,7 @@ export default class UserService {
     
     await this.model.insert(body);
 
-    const {password, ...data} = body
+    const { password, ...data } = body;
     const token: IToken = this.auth.generateToken(data);
   
     return token;

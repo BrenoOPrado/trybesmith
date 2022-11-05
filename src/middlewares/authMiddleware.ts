@@ -1,14 +1,15 @@
 import dotenv from 'dotenv';
 import jwt, { Secret, SignOptions } from 'jsonwebtoken';
-import { IToken, IUser } from "../interfaces";
+import { IToken, IUser } from '../interfaces';
+import Exeption from './exception';
 
 dotenv.config();
 
 const TOKEN_SECRET_KEY: Secret = process.env.JWT_SECRET || 'secret';
 
-export default class authMiddleware {
-  public generateToken(data: IUser): IToken {
-      const payload = {
+export default class AuthMiddleware {
+  generateToken = (data: IUser): IToken => {
+    const payload = {
       ...data,
     };
 
@@ -22,11 +23,11 @@ export default class authMiddleware {
     return { token };
   };
        
-  async authenticateToken(token: IToken): Promise<void> {
+  authenticateToken = async (token: IToken): Promise<void> => {
     if (!token) {
-      const status:number = 401;
-      const message:string = 'Token not found';
-      throw { status, message };
+      const status = 401;
+      const message = 'Token not found';
+      throw new Exeption(status, message);
     }
 
     try {
@@ -34,9 +35,9 @@ export default class authMiddleware {
       console.log(validateToken);
       return;
     } catch (error) {
-      const status:number = 401;
-      const message:string = 'Expired or invalid token';
-      throw { status, message };
+      const status = 401;
+      const message = 'Expired or invalid token';
+      throw new Exeption(status, message);
     }
   };
 }
