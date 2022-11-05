@@ -11,14 +11,15 @@ export default class ProductsService {
       name: Joi.string().required(),
       amount: Joi.string().required(),
     });
-  
     const validBody:IProduct = validateBody(body, schema);
-  
-    console.log('foi inserir e ...');
   
     const result:IProduct = await this.model.insert(validBody);
   
-    console.log('inseriu');
+    return result;
+  }
+
+  async getAll(): Promise<IProduct[]> {
+    const result:IProduct[] = await this.model.getAll();
   
     return result;
   }

@@ -10,12 +10,21 @@ export default class ProductsModel {
     
     const [[result]] = await this.conn
       .execute <IProduct[] & RowDataPacket[]>(
-      'INSERT INTO products (name, amount) VALUES (?, ?)',
+      'INSERT INTO Trybesmith.Products (name, amount) VALUES (?, ?)',
       [body.name, body.amount],
     );
   
     console.log(result);
   
+    return result;
+  }
+
+  async getAll():Promise<IProduct[]> {
+    const [result] = await this.conn
+      .execute <IProduct[] & RowDataPacket[]>(
+      'SELECT * FROM Trybesmith.Products',
+    );
+
     return result;
   }
 }

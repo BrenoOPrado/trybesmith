@@ -10,4 +10,10 @@ export default class ProductsController {
   
     res.status(201).json(result);
   }
+
+  async getAll(req: Request, res: Response): Promise<void> {
+    const result: IProduct[] = await this.service.getAll();
+    
+    res.status(200).json(result);
+  }
 }

@@ -7,4 +7,6 @@ const controller = new ProductsController();
 
 productsRouter.post('/', controller.insert);
 
+productsRouter.get('/', controller.getAll);
+
 export default productsRouter;
