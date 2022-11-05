@@ -1,6 +1,6 @@
 import Joi from 'joi';
-import IProduct from '../interfaces';
-import validateBody from './helpers/validateBody';
+import { IProduct } from '../interfaces';
+import validateBody from '../middlewares/validateBody';
 import ProductsModel from '../models/productsModel';
 
 export default class ProductsService {
@@ -11,9 +11,9 @@ export default class ProductsService {
       name: Joi.string().required(),
       amount: Joi.string().required(),
     });
-    const validBody:IProduct = validateBody(body, schema);
+    validateBody(body, schema);
   
-    const result:IProduct = await this.model.insert(validBody);
+    const result:IProduct = await this.model.insert(body);
   
     return result;
   }
