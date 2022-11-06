@@ -15,3 +15,8 @@ export interface IUser {
 export interface IToken {
   token: string,
 }
+
+export interface ILogin {
+  username: string,
+  password: string,
+}

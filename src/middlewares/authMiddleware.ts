@@ -1,14 +1,15 @@
-import dotenv from 'dotenv';
 import jwt, { Secret, SignOptions } from 'jsonwebtoken';
 import { IToken, IUser } from '../interfaces';
 import Exeption from './exception';
 
-dotenv.config();
+const TOKEN_SECRET_KEY: Secret = 'secret';
 
-const TOKEN_SECRET_KEY: Secret = process.env.JWT_SECRET || 'secret';
+type Login = {
+  username: string,
+};
 
 export default class AuthMiddleware {
-  generateToken = (data: IUser): IToken => {
+  generateToken = (data: IUser | Login): IToken => {
     const payload = {
       ...data,
     };

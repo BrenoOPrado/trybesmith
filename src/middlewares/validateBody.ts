@@ -1,8 +1,11 @@
 import Joi from 'joi';
-import { IProduct, IUser } from '../interfaces';
+import { ILogin, IProduct, IUser } from '../interfaces';
 import Exception from './exception';
 
-function validateBody(body:IProduct | IUser, schema:Joi.ObjectSchema<IProduct | IUser>): void {
+function validateBody(
+  body:IProduct | IUser | ILogin,
+  schema:Joi.ObjectSchema<IProduct | IUser | ILogin>,
+): void {
   const { error } = schema.validate(body);
 
   if (error) {
