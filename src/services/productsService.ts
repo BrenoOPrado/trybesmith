@@ -16,11 +16,11 @@ export default class ProductsService {
     const result:IProduct = await this.model.insert(body);
   
     return result;
-  }
+  };
 
   getAll = async (): Promise<IProduct[]> => {
     const result:IProduct[] = await this.model.getAll();
   
     return result;
-  }
+  };
 } 

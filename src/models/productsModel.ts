@@ -5,7 +5,7 @@ import connection from './connection';
 export default class ProductsModel {
   public conn = connection;
 
-  insert = async(body:IProduct):Promise<IProduct> => {
+  insert = async (body:IProduct):Promise<IProduct> => {
     console.log('antes de inserir');
     
     const { name, amount } = body;
@@ -17,7 +17,7 @@ export default class ProductsModel {
     console.log(insertId);
   
     return { id: insertId, ...body } as IProduct;
-  }
+  };
 
   getAll = async ():Promise<IProduct[]> => {
     const [result] = await this.conn
@@ -26,5 +26,5 @@ export default class ProductsModel {
     );
 
     return result;
-  }
+  };
 }
