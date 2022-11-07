@@ -3,7 +3,7 @@ import { IToken } from '../interfaces';
 import LoginService from '../services/loginService';
 
 export default class LoginController {
-  service = new LoginService();
+  constructor(private service = new LoginService()) {}
 
   async insert(req: Request, res: Response): Promise<void> {
     const result: IToken = await this.service.insert(req.body);
