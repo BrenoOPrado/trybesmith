@@ -8,5 +8,5 @@ export default class OrderController {
     const result = await this.service.getAll();
     
     res.status(200).json(result);
-  }
+  };
 }
