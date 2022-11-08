@@ -3,9 +3,9 @@ import { IToken } from '../interfaces';
 import UserService from '../services/userService';
 
 export default class UserController {
-  service = new UserService();
+  constructor(private service = new UserService()) {}
 
-  async insert(req: Request, res: Response): Promise<void> {
+  insert = async (req: Request, res: Response): Promise<void> => {
     const result: IToken = await this.service.insert(req.body);
   
     res.status(201).json(result);

@@ -5,11 +5,11 @@ import connection from './connection';
 export default class UserModel {
   conn = connection;
 
-  async insert(body:IUser):Promise<IUser> {
+  insert = async (body:IUser):Promise<IUser> => {
     const [[result]] = await this.conn
       .execute <IUser[] & RowDataPacket[]>(
       `INSERT INTO Trybesmith.Users (username, classe, level, password)
-      VALUES (?, ?, ?, ?)`,
+      VALUE (?, ?, ?, ?)`,
       [body.username, body.classe, body.level, body.password],
     );
   

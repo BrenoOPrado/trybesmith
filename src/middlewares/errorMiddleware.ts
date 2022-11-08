@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import Exception from './exception';
 
-const errorMiddleware = (err: Error, req: Request, res: Response, _next: NextFunction) => {
+const errorMiddleware = (err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.log('deu o erro:----------------------');
   console.log(err);
   console.log('---------------------------------');

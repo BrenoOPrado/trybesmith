@@ -1,9 +1,9 @@
 import OrderModel from '../models/orderModel';
 
 export default class OrderService {
-  model = new OrderModel();
+  constructor(private model = new OrderModel()) {}
 
-  async getAll() {
+  getAll = async () => {
     const result = await this.model.getAll();
   
     return result;

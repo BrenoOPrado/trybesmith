@@ -5,11 +5,15 @@ import UserModel from '../models/userModel';
 import AuthMiddleware from '../middlewares/authMiddleware';
 
 export default class UserService {
-  auth = new AuthMiddleware();
+  private auth;
+  private model;
 
-  model = new UserModel();
+  constructor() {
+    this.auth = new AuthMiddleware();
+    this.model = new UserModel();
+  }
 
-  async insert(body:IUser): Promise<IToken> {
+  insert = async (body:IUser): Promise<IToken> => {
     const schema = Joi.object<IUser>({
       username: Joi.string().required(),
       classe: Joi.string().required(),

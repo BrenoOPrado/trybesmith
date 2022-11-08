@@ -9,6 +9,6 @@ app.use(express.json());
 
 app.use(routers);
 
-app.use(errorMiddleware);
+// app.use(errorMiddleware);
 
 export default app;

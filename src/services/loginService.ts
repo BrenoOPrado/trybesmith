@@ -2,25 +2,36 @@ import Joi from 'joi';
 import { IToken, ILogin } from '../interfaces';
 import validateBody from '../middlewares/validateBody';
 import AuthMiddleware from '../middlewares/authMiddleware';
-import ValidateLogin from '../middlewares/validateLogin';
+import LoginModel from '../models/loginModel';
 
 export default class LoginService {
-  auth = new AuthMiddleware();
-  
-  login = new ValidateLogin();
+  private auth;
+  private model;
 
-  async insert(body:ILogin): Promise<IToken> {
+  constructor() {
+    this.auth = new AuthMiddleware();
+    this.model = new LoginModel();
+  }
+
+  insert = async (body:ILogin) => {
     const schema = Joi.object<ILogin>({
       username: Joi.string().required(),
       password: Joi.string().required(),
     });
-    validateBody(body, schema);
+    const { error } = schema.validate(body);
+    if (error) {
+      return { type: 'error', status: 400, message: error.message }
+    }
 
-    this.login.verifyLogin(body);
+    const users = await this.model.findByUser(body);
+    
+    if (users.length < 1) {
+      return { type: 'error', status: 401, message: 'Username or password invalid' }
+    }
 
     const { password, ...data } = body;
     const token: IToken = this.auth.generateToken(data);
   
-    return token;
+    return { type: null, status: 200, message: token };
   }
 }

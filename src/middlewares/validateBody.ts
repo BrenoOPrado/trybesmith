@@ -7,8 +7,10 @@ function validateBody(
   schema:Joi.ObjectSchema<IProduct | IUser | ILogin>,
 ): void {
   const { error } = schema.validate(body);
-
+  
   if (error) {
+    console.log('entrou');
+    console.log(error.message);
     throw new Exception(400, error.message);
   }
 }
