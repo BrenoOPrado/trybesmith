@@ -15,5 +15,5 @@ export default class OrderModel {
       );
 
     return result;
-  }
+  };
 }
