@@ -32,7 +32,7 @@ export default class AuthMiddleware {
     }
 
     try {
-      const validateToken = jwt.verify(token.token, TOKEN_SECRET_KEY);
+      // const validateToken = jwt.verify(token.token, TOKEN_SECRET_KEY);
       return;
     } catch (error) {
       const status = 401;
