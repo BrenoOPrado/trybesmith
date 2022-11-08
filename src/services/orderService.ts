@@ -7,5 +7,5 @@ export default class OrderService {
     const result = await this.model.getAll();
   
     return result;
-  }
+  };
 } 
