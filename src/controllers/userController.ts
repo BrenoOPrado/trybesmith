@@ -9,5 +9,5 @@ export default class UserController {
     const result: IToken = await this.service.insert(req.body);
   
     res.status(201).json(result);
-  }
+  };
 }
