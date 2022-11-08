@@ -6,6 +6,7 @@ import AuthMiddleware from '../middlewares/authMiddleware';
 
 export default class UserService {
   private auth;
+  
   private model;
 
   constructor() {
@@ -28,5 +29,5 @@ export default class UserService {
     const token: IToken = this.auth.generateToken(data);
   
     return token;
-  }
+  };
 } 
