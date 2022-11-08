@@ -12,5 +12,5 @@ export default class LoginController {
       res.status(status).json(result.message);
     }
     res.status(status).json({ message });
-  }
+  };
 }
