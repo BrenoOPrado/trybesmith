@@ -14,5 +14,5 @@ export default class LoginModel {
     );
   
     return result;
-  }
+  };
 }
